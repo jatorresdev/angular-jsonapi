@@ -39,7 +39,7 @@ export class JsonApiModel {
   }
 
   get relationships(): any {
-    return this._data.relationships;
+    return this.data.relationships;
   }
 
   public isModelInitialization(): boolean {
