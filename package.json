@@ -1,5 +1,5 @@
 {
-  "name": "angular-jsonapi",
+  "name": "@jatorresdev/angular2-jsonapi",
   "version": "7.0.0",
   "description": "A lightweight Angular 2+ adapter for JSON API",
   "scripts": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jatorresdev/angular-jsonapi"
+    "url": "https://github.com/jatorresdev/angular2-jsonapi"
   },
   "author": {
     "name": "Daniele Ghidoli",
@@ -31,7 +31,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jatorresdev/angular-jsonapi/issues"
+    "url": "https://github.com/jatorresdev/angular2-jsonapi/issues"
   },
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",

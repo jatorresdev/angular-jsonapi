@@ -74,7 +74,11 @@ Moreover, using Angular2 and Typescript, we like to interact with classes and mo
 
 To install this library, run:
 ```bash
-$ npm install angular2-jsonapi --save
+$ npm install @jatorresdev/angular2-jsonapi --save
+```
+
+```bash
+$ yarn add @jatorresdev/angular2-jsonapi
 ```
 
 Add the `JsonApiModule` to your app module imports:
