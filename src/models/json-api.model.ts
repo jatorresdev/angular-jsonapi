@@ -6,6 +6,7 @@ import { ModelConfig } from '../interfaces/model-config.interface';
 import * as _ from 'lodash';
 import { AttributeMetadata } from '../constants/symbols';
 import { HttpHeaders } from '@angular/common/http';
+import { JsonApiMetaModel } from '..';
 
 /**
  * HACK/FIXME:
@@ -24,13 +25,21 @@ export class JsonApiModel {
 
   lastSyncModels: Array<any>;
 
-  constructor(private internalDatastore: JsonApiDatastore, data?: any) {
+  constructor(private internalDatastore: JsonApiDatastore, protected data?: any) {
     if (data) {
       this.modelInitialization = true;
       this.id = data.id;
       Object.assign(this, data.attributes);
       this.modelInitialization = false;
     }
+  }
+
+  get meta(): JsonApiMetaModel {
+    return new JsonApiMetaModel(this._data);
+  }
+
+  get relationships(): any {
+    return this._data.relationships;
   }
 
   public isModelInitialization(): boolean {
