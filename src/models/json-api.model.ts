@@ -131,31 +131,26 @@ export class JsonApiModel {
 
         if (relationship && relationship.data && relationship.data.length > 0) {
           let allModels: JsonApiModel[] = [];
-          const modelTypesFetched: any = [];
 
           for (const typeIndex of Object.keys(relationship.data)) {
             const typeName: string = relationship.data[typeIndex].type;
 
-            if (!includes(modelTypesFetched, typeName)) {
-              modelTypesFetched.push(typeName);
-              // tslint:disable-next-line:max-line-length
-              const modelType: ModelType<this> = Reflect.getMetadata('JsonApiDatastoreConfig', this.internalDatastore.constructor).models[typeName];
+            // tslint:disable-next-line:max-line-length
+            const modelType: ModelType<this> = Reflect.getMetadata('JsonApiDatastoreConfig', this.internalDatastore.constructor).models[typeName];
 
-              if (modelType) {
-                const relationshipModels: JsonApiModel[] = this.getHasManyRelationship(
-                  modelType,
-                  relationship.data,
-                  included,
-                  typeName,
-                  remainingModels
-                );
+            if (modelType) {
+              const relationshipModels: JsonApiModel[] = this.getHasManyRelationship(
+                modelType,
+                [relationship.data[typeIndex]],
+                included,
+                typeName,
+                remainingModels);
 
-                if (relationshipModels.length > 0) {
-                  allModels = allModels.concat(relationshipModels);
-                }
-              } else {
-                throw { message: `parseHasMany - Model type for relationship ${typeName} not found.` };
+              if (relationshipModels.length > 0) {
+                allModels = allModels.concat(relationshipModels);
               }
+            } else {
+              throw { message: `parseHasMany - Model type for relationship ${typeName} not found.` };
             }
 
             if (allModels.length > 0) {

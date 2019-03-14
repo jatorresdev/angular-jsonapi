@@ -1,8 +1,7 @@
-# [7.0.0-beta]
+# [7.0.0]
 
-  ### BREAKING CHANGES
-
-  * Upgraded the library to Angular 7
+  * Angular 7 support
+  * Smaller bug fixes
 
 # [6.1.2]
 
