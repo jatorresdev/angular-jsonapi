@@ -35,7 +35,7 @@ export class JsonApiModel {
   }
 
   get meta(): JsonApiMetaModel {
-    return new JsonApiMetaModel(this._data);
+    return new JsonApiMetaModel(this.data);
   }
 
   get relationships(): any {
