@@ -1,47 +1,35 @@
-# Angular JSON API
+# Angular 2 JSON API
 
-A lightweight Angular adapter for [JSON API](http://jsonapi.org/)
+A lightweight Angular 2 adapter for [JSON API](http://jsonapi.org/)
 
-<!-- [![Build Status](https://travis-ci.org/ghidoz/angular2-jsonapi.svg?branch=master)](https://travis-ci.org/ghidoz/angular2-jsonapi)
-[![Coverage Status](https://coveralls.io/repos/github/ghidoz/angular2-jsonapi/badge.svg?branch=master)](https://coveralls.io/github/ghidoz/angular2-jsonapi?branch=master) -->
+[![Build Status](https://travis-ci.org/ghidoz/angular2-jsonapi.svg?branch=master)](https://travis-ci.org/ghidoz/angular2-jsonapi)
+[![Coverage Status](https://coveralls.io/repos/github/ghidoz/angular2-jsonapi/badge.svg?branch=master)](https://coveralls.io/github/ghidoz/angular2-jsonapi?branch=master)
 [![Angular 2 Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
-<!-- [![Dependency Status](https://david-dm.org/ghidoz/angular2-jsonapi.svg)](https://david-dm.org/ghidoz/angular2-jsonapi)
+[![Dependency Status](https://david-dm.org/ghidoz/angular2-jsonapi.svg)](https://david-dm.org/ghidoz/angular2-jsonapi)
 [![devDependency Status](https://david-dm.org/ghidoz/angular2-jsonapi/dev-status.svg)](https://david-dm.org/ghidoz/angular2-jsonapi#info=devDependencies)
-[![npm version](https://badge.fury.io/js/angular2-jsonapi.svg)](https://badge.fury.io/js/angular2-jsonapi) -->
+[![npm version](https://badge.fury.io/js/angular2-jsonapi.svg)](https://badge.fury.io/js/angular2-jsonapi)
 
 ## Table of Contents
-- [Angular JSON API](#angular-json-api)
-  - [Table of Contents](#table-of-contents)
-  - [Introduction](#introduction)
-  - [Installation](#installation)
-  - [Usage](#usage)
+- [Introduction](#Introduction)
+- [Installation](#installation)
+- [Usage](#usage)
     - [Configuration](#configuration)
     - [Finding Records](#finding-records)
-      - [Querying for Multiple Records](#querying-for-multiple-records)
-      - [Retrieving a Single Record](#retrieving-a-single-record)
+        - [Querying for Multiple Records](#querying-for-multiple-records)
+        - [Retrieving a Single Record](#retrieving-a-single-record)
     - [Creating, Updating and Deleting](#creating-updating-and-deleting)
-      - [Creating Records](#creating-records)
-      - [Updating Records](#updating-records)
-      - [Persisting Records](#persisting-records)
-      - [Deleting Records](#deleting-records)
+        - [Creating Records](#creating-records)
+        - [Updating Records](#updating-records)
+        - [Persisting Records](#persisting-records)
+        - [Deleting Records](#deleting-records)
     - [Relationships](#relationships)
-      - [Querying records](#querying-records)
-      - [Creating Records](#creating-records-1)
-      - [Updating Records](#updating-records-1)
     - [Metadata](#metadata)
-    - [Datastore config](#datastore-config)
-        - [Overrides](#overrides)
-    - [Model config](#model-config)
-    - [Decorators](#decorators)
-      - [Model decorators](#model-decorators)
     - [Custom Headers](#custom-headers)
-    - [Custom request options](#custom-request-options)
     - [Error handling](#error-handling)
     - [Dates](#dates)
-  - [Development](#development)
-  - [Additional tools](#additional-tools)
-  - [Thanks](#thanks)
-  - [License](#license)
+- [Development](#development)
+- [Additional tools](#additional-tools)
+- [License](#licence)
 
 ## Introduction
 Why this library? Because [JSON API](http://jsonapi.org/) is an awesome standard, but the responses that you get and the way to interact with endpoints are not really easy and directly consumable from Angular.
@@ -74,11 +62,7 @@ Moreover, using Angular2 and Typescript, we like to interact with classes and mo
 
 To install this library, run:
 ```bash
-$ npm install @jatorresdev/angular2-jsonapi --save
-```
-
-```bash
-$ yarn add @jatorresdev/angular2-jsonapi
+$ npm install angular2-jsonapi --save
 ```
 
 Add the `JsonApiModule` to your app module imports:
@@ -97,29 +81,6 @@ import { JsonApiModule } from 'angular2-jsonapi';
 })
 export class AppModule { }
 ```
-
-### Angular CLI configuration (for CLI 8.1+)
-
-Beginning from Angular CLI 8.1 the `tsconfig.json` does not sets the `emitDecoratorMetadata` option (see https://blog.ninja-squad.com/2019/07/03/angular-cli-8.1/#typescript-configuration-changes). But we need it to read the metadata from the models. So make sure to update your `tsconfig.json`:
-
-```json
-{
-  "compilerOptions": {
-    "emitDecoratorMetadata": true,
-  }
-}
-```
-
-### Notice for `es2015` compilation
-
-Beginning with Angular 8 the default compile target will be `es2015` (in `tsconfig.json`). 
-Make sure to add this line in your `src/polyfills.ts` as we need it to read metadata from the models:
-
-```typescript
-import 'core-js/proposals/reflect-metadata';
-```
-
-**Warning**: If you have circular dependencies in your model definitions (see https://github.com/ghidoz/angular2-jsonapi/issues/236#issuecomment-519473153 for example), you need to change the compile target to `es5` as this lead to runtime errors `ReferenceError: Cannot access 'x' before initialization` (see https://github.com/angular/angular/issues/30106#issuecomment-497699838).
 
 ## Usage
 
