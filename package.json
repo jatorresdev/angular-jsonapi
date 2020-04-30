@@ -1,18 +1,6 @@
 {
   "name": "@jatorresdev/angular2-jsonapi",
-  "description": "A lightweight Angular 2+ adapter for JSON API",
   "version": "9.0.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jatorresdev/angular-jsonapi"
-  },
-  "author": {
-    "name": "Daniele Ghidoli",
-    "url": "http://danieleghidoli.it"
-  },
-  "contributors": [
-    "Angel Torres <jatorresdev@gmail.com> (https://jatorresdev.github.io/)"
-  ],
   "scripts": {
     "build": "ng build",
     "e2e": "ng e2e",
