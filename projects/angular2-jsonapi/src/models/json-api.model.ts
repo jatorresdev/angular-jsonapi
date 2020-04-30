@@ -6,7 +6,7 @@ import { ModelConfig } from '../interfaces/model-config.interface';
 import * as _ from 'lodash';
 import { AttributeMetadata } from '../constants/symbols';
 import { HttpHeaders } from '@angular/common/http';
-import { JsonApiMetaModel } from '..';
+import { JsonApiMetaModel } from './json-api-meta.model';
 
 /**
  * HACK/FIXME:
@@ -131,6 +131,7 @@ export class JsonApiModel {
 
         if (relationship && relationship.data && Array.isArray(relationship.data)) {
           let allModels: JsonApiModel[] = [];
+          const modelTypesFetched: any = [];
 
           for (const typeIndex of Object.keys(relationship.data)) {
             const typeName: string = relationship.data[typeIndex].type;
@@ -153,10 +154,8 @@ export class JsonApiModel {
                   allModels = allModels.concat(relationshipModels);
                 }
               } else {
-                throw {message: `parseHasMany - Model type for relationship ${typeName} not found.`};
+                throw { message: `parseHasMany - Model type for relationship ${typeName} not found.` };
               }
-            } else {
-              throw { message: `parseHasMany - Model type for relationship ${typeName} not found.` };
             }
           }
 
@@ -192,7 +191,7 @@ export class JsonApiModel {
                 this[metadata.propertyName] = relationshipModel;
               }
             } else {
-              throw {message: `parseBelongsTo - Model type for relationship ${typeName} not found.`};
+              throw { message: `parseBelongsTo - Model type for relationship ${typeName} not found.` };
             }
           }
         }
@@ -210,7 +209,7 @@ export class JsonApiModel {
     const relationshipList: Array<T> = [];
 
     data.forEach((item: any) => {
-      const relationshipData: any = find(included, {id: item.id, type: typeName} as any);
+      const relationshipData: any = find(included, { id: item.id, type: typeName } as any);
 
       if (relationshipData) {
         const newObject: T = this.createOrPeek(modelType, relationshipData);
@@ -239,7 +238,7 @@ export class JsonApiModel {
   ): T | null {
     const id: string = data.id;
 
-    const relationshipData: any = find(included, {id, type: typeName} as any);
+    const relationshipData: any = find(included, { id, type: typeName } as any);
 
     if (relationshipData) {
       const newObject: T = this.createOrPeek(modelType, relationshipData);
